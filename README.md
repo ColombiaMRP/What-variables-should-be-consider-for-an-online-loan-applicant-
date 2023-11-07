@@ -1,5 +1,5 @@
-# What variables should be consider for an online loan applicant-
-ML Zoomcamp Midterm Project to analyze online peer-to-peer(p2p) lending to choose borrowers elegible and with hogh chances to pay off their debts
+# What variables should be considered for an online loan applicant
+Machine learning project to analyze online peer-to-peer(p2p) lending data and with the objective of predict what borrowers are eligible (with high chances to pay off their debts) for getting a loan.
 
 ## Bussines Issued Description
 Online peer-to-peer (P2P) lending has made the practice of borrowing and lending easy. In this form of lending, there is no in-person interview and a borrower can simply fill out an online form and get a loan approved. The information provided solely by a borrower is prone to exaggeration and distortion, especially when it comes to income. Every P2P lending company relies on a well-designed procedure that rejects borrowers with a high chance of not paying off their debts.
@@ -8,7 +8,7 @@ Rejecting anyone without a verified source of income is a relevant policy that l
 
 ## Analitical context
 
-The data is downloaded from [LendingClub (LC) Statistics](https://www.lendingclub.com/info/download-data.action) and it contains all loans issued from 2007 - 2012 along with their current loan status (fully paid or charged off). There are ~50 variables that describe the borrowers and the loans; for the sake of reducing complexity, the company has already performed a pre-screening of these variables based on existing analyses from LendingClub to select nine relevant variables, such as annual income, LendingClub credit grade, home ownership, etc. Consdering the main target to be able to predict if a lender is going to pay off his adquired debt or not according to the historical charateristics of previous lenders, we make three models to compete (logistic model, random forest and Xgboos) so that we can use it to create a Web service which is latter isolated in a docker container and used in production, namely, to make decide if lending or not to knew potential lenders. Used variables are:
+The data is downloaded from [LendingClub (LC) Statistics](https://www.lendingclub.com/info/download-data.action) and it contains all loans issued from 2007 - 2012 along with their current loan status (fully paid or charged off). There are ~50 variables that describe the borrowers and the loans; for the sake of reducing complexity, the company has already performed a pre-screening of these variables based on existing analyses from LendingClub to select nine relevant variables, such as annual income, LendingClub credit grade, home ownership, etc. Considering the main target to be able to predict if a lender is going to pay off his adquired debt or not according to the historical charateristics of previous lenders, we make three models to compete (logistic model, random forest and Xgboos) so that we can use it to create a Web service which is latter isolated in a docker container and used in production, namely, to make the decision of either lending or not to new potential borrowers. Used variables are:
 
 |      annual_inc     |                                                 The self-reported annual income provided by the borrower during registration.                                                |
 |:-------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -49,7 +49,7 @@ If you are going to directly run the jupyter notebook files or web service, you 
       pip install pipenv
       ```
      
-  2. Set up the virtual enviroment and install dependencies. Including "-e ." makes the packaged available within all the files in an editable mode:
+  2. Set up the virtual enviroment and install dependencies. Including "-e ." makes the packages available within all the files in an editable mode:
 
       ```python
       pipenv install 
@@ -60,14 +60,14 @@ If you are going to directly run the jupyter notebook files or web service, you 
       pipenv run pip freeze
       ```
      
-  4. Now you activate the VE and run python files for training and predicting:
+  4. Now you can activate the VE and run python files for training the model and using it for predicting:
 
      ```python
       pipenv shell
       python train.py
       python predict.py
       ```
-     Take into account thar, for testing our model and making predictions, we use an example of a consumer with these chracteristics:
+     Take into account that, for testing our model and making predictions, we use an example of a consumer with these chracteristics:
 
      ```python
      customer ={
@@ -89,7 +89,7 @@ To host the service locally using the virtual environment, you need to start the
 ```python
 waitress-serve --listen=0.0.0.0:9696 WS_train:app
 ```
-Now the Flask application is running, you can make HTTP requests to port 9696 running the file ```WS_predict.py``` where the consumer whose carhacteristics were defined above. Namely, you should run:
+Now the Flask application is running, you can make HTTP requests to port 9696 running the file ```WS_predict.py``` where the consumer whose characteristics were defined above. Namely, you should run:
 
 ```python
 pipenv WS_predict.py
@@ -97,7 +97,7 @@ pipenv WS_predict.py
 
 ### Docker Deployment
 
-In Case you want to deploy the web service using and specific and dedicated docker container for that. The steps you might follow are:
+In Case you want to deploy the web service using and specific and dedicated docker container for that, the steps you might follow are:
 
   1. download the python image you need for containerizing the providing files using docker. You can do this running:
 
@@ -114,13 +114,13 @@ In Case you want to deploy the web service using and specific and dedicated dock
      ```python
      docker images
       ```
-  4. Now the image has been created, you can run a containet from it using (as shown in the image below):
+  4. Now the image has been created, you can run a container from it using (as shown in the image below):
 
       docker run -it --rm -p 9696:9696 "image_name"
 
 ![Running built immage](https://github.com/ColombiaMRP/What-variables-should-be-consider-for-an-online-loan-applicant-/blob/main/docker_train.png)
 
-With the Flask application running inside Docker you can make HTTP requests to port 9696 running the file ```WS_predict.py``` where the consumer whose carhacteristics were defined above. Namely, you should run:
+With the Flask application running inside Docker you can make HTTP requests to port 9696 running the file ```WS_predict.py``` where the consumer whose characteristics were defined above. Namely, you should run:
 
 ```python
 pipenv WS_predict.py
@@ -141,6 +141,6 @@ You can change the parameters to test out different scenarios by changing values
 * term = [' 36 months', ' 60 months']
 * grade = ['B', 'A', 'C', 'D', 'E', 'F', 'G']
 
-Once you are happy with the ressults you can run agian this files in either case  for making predictions in a new console window inside the project folder. 
+Once you are happy with the ressults you can run again these files in either case for making predictions in a new console window inside the project folder. 
 
-I would like to give a special "thank-you" to all my colagues, as I recieved a warm collaboration from them all during the procces of building my project. I also thank for your future and sincere feedback to keep improving my habilities at this beatifull work.
+I would like to give a special "thank-you" to all my colleagues, as I recieved a warm collaboration from them all during the procces of building my project. I also thank for your future and sincere feedback to keep improving my habilities at this beatifull work.
